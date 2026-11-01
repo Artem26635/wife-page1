@@ -1,0 +1,175 @@
+html {
+  box-sizing: border-box;
+  /* для вырезов на моб устройствах */
+  padding-top: env(safe-area-inset-top, 0);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+      
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+      
+h1,h2,h3,h4,h5,h6,p {
+  margin: 0;
+  padding: 0;
+}
+
+/* † {
+  outline: 1px solid red; покажет границы всех блоков
+}
+*/
+ 
+:root {
+  
+  --color-header: #ffffff; /* цвет текста оглавления */
+  --color-p-card: #2b3228;  /* цвет текста карточки */
+  --bg-btn-card: rgba(255, 255, 255, 0.75); /* цвет карточки */
+  --overlay-bg: transparent;
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --color-header: #ffffff;
+    --color-p-card: #EADBBA;
+    --bg-btn-card: rgba(40, 35, 30, 0.95);
+    --overlay-bg: rgba(0, 0, 0, 0.5);
+  }
+
+  .grid-item {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+} */
+
+/*  */
+
+.text-h1 {
+  font-size: 18px;
+  font-weight: 400;
+  font-family: "Roboto", sans-serif;
+  line-height: 1.2;
+}
+.p-text {
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "Oswald", sans-serif;
+  line-height: 1.2;
+}
+/*  */
+
+body {
+  background: url('/img/general.jpeg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-size: 16px;
+}
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--overlay-bg);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.container {
+  width: 90%;       /* 90% от ширины экрана */
+  max-width: 540px; /* но не шире 540 px */
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.header {
+  padding-top: 4rem;
+  
+}
+
+.header-h1 {
+  text-align: center;
+  color: var(--color-header);
+  text-transform: uppercase;
+}
+
+.main {
+  margin-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 60px;
+  align-items: center;
+  justify-items: center;
+}
+.grid-item { 
+  width: 100%; /* на всю ширину колонки */ 
+  max-width: 380px; /* но не шире 380 px */ 
+  height: auto; /* высота по контенту */ 
+  aspect-ratio: 1 / 1; /* квадрат, если нужно */ 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+  overflow: hidden;  /* обрезает углы у кнопки если будут */
+}
+.btn-card {
+  width: 100%;
+  height: 100%;
+  border: none;
+  position: relative;
+  padding: 0;
+  margin: 0;
+  background-color: var(--bg-btn-card);
+  cursor: pointer; /* рука при наведении */
+  transition: transform 0.2s ease; /* лёгкий эффект нажатия */
+}
+.btn-card:active {
+  transform: scale(0.98); /* чуть «вдавливается» при нажатии */
+}
+.img-card {
+  width: 100%;
+  height: 100%;
+  border: none;
+  object-fit: cover;  /* чтобы не сплющивалось из-за aspect-ratio */
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  transition: transform 0.8s ease, opacity 0.3s ease;
+}
+.img-card-active {
+  opacity: 1;
+  transform: rotate(360deg);
+}
+.p-card {
+  color: var(--color-p-card);
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+  transform: translate(-50%, 50%);
+  transition: opacity 0.3s ease;
+}
+.p-card-active {
+  opacity: 0;
+}
+
+.footer {
+}
+
+@media (max-width: 600px) {
+  .grid-container {
+    grid-template-columns: 1fr; /* одна колонка */
+    gap: 30px;            
+  }
+
+  .header-h1 {
+    text-align: center;
+  }
+}
