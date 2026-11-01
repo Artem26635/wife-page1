@@ -57,7 +57,7 @@ h1,h2,h3,h4,h5,h6,p {
 /*  */
 
 body {
-  background: url('/img/general.jpeg');
+  background: url('img/general.jpeg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
